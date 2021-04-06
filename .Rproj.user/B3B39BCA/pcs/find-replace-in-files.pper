@@ -1,0 +1,13 @@
+{
+    "dialog-state": {
+        "query": "this template",
+        "path": "~/sitsdraft",
+        "regex": false,
+        "caseSensitive": false,
+        "filePatterns": [],
+        "excludeFilePatterns": [],
+        "resultsCount": 1,
+        "errorCount": 0,
+        "replaceErrors": ""
+    }
+}

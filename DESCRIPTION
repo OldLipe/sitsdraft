@@ -7,7 +7,6 @@ Authors@R: c(person('Felipe', 'Carvalho', role = c('aut'), email = 'lipecaso@gma
 Maintainer: Felipe Carvalho <lipecaso@gmail.com>
 Description: Provides a basic template for applications based on SITS package and 
     reproducible research tools.
-    Encoding: UTF-8
 Depends: R (>= 3.5.0)
 URL: https://github.com/oldlipe/sitsdraft/
 BugReports: https://github.com/oldlipe/sitsdraft/issues
@@ -21,3 +20,5 @@ Imports:
     tools,
     rstudioapi
 RoxygenNote: 7.1.1
+Suggests: 
+    covr

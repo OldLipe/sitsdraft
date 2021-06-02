@@ -1,4 +1,7 @@
-
+#'
+#'
+#'
+#'
 path <- function(...) {
 
     dir <- paste0(unlist(list(...), use.names = FALSE), collapse = "/")
@@ -6,6 +9,10 @@ path <- function(...) {
     return(dir)
 }
 
+#'
+#'
+#'
+#'
 make_dir <- function(...) {
 
     dir <- path(...)

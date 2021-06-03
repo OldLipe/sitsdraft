@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{do_classify}
 \alias{do_classify}
-\title{}
+\title{Classify map}
 \usage{
 do_classify(
   proj_dir,
@@ -33,5 +33,5 @@ do_classify(
 an invisible NULL
 }
 \description{
-
+Classify map
 }

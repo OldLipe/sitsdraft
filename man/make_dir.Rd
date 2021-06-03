@@ -7,7 +7,7 @@
 make_dir(...)
 }
 \arguments{
-\item{a}{\code{character} vector with path}
+\item{...}{a  \code{character} vector with path}
 }
 \value{
 a \code{character} vector with the path of the created directory

@@ -72,11 +72,11 @@ sitsdraft <- function(pkgname = "sitsdraft",
         setwd(pkgname)
 
         # run additional commands
-        usethis::use_mit_license(copyright_holder = get_git_config('user.name', global = TRUE))
+        #usethis::use_mit_license(copyright_holder = get_git_config('user.name', global = TRUE))
         cat('\n')
         rrtools::use_readme_rmd(render_readme = FALSE)
         cat('\n')
-        rrtools::use_analysis(data_in_git = data_in_git)
+        #rrtools::use_analysis(data_in_git = data_in_git)
         cat('\n')
 
         usethis::ui_done("The working directory is now {getwd()}")

@@ -18,7 +18,12 @@ Imports:
     rrtools,
     usethis,
     tools,
-    rstudioapi
+    rstudioapi,
+    dplyr,
+    furrr,
+    future
+Remotes:
+    sits
 RoxygenNote: 7.1.1
 Suggests: 
     covr

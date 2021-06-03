@@ -10,7 +10,7 @@ path <- function(...) {
 }
 
 #' @title Create directory
-#' @param a \code{character} vector with path
+#' @param ... a  \code{character} vector with path
 #'
 #' @return a \code{character} vector with the path of the created directory
 make_dir <- function(...) {
@@ -322,7 +322,7 @@ cube_probs_files <- function(proj_dir, cube, version) {
     file_name
 }
 
-#' @title
+#' @title Classify map
 #'
 #' @param proj_dir a \code{character} with project directory
 #' @param cube a \code{sits_cube} object
@@ -351,12 +351,6 @@ do_classify <- function(proj_dir, cube, roi = NULL, version = "v1",
     # get cube probabilities rds files
     files_rds <- cube_probs_files(proj_dir = proj_dir, cube = cube,
                                   version = version)
-
-    # log
-    Sys.setenv("__SITS_DEBUG__" = TRUE)
-
-    # support to sits resume glitch
-    Sys.setenv("__SITS_RESUME__" = TRUE)
 
     # implements tile resuming
     for (i in seq_len(nrow(cube))) {

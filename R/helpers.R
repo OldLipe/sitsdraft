@@ -1,7 +1,7 @@
+#' @title Format path
+#' @param ... a \code{character} vector with paths
 #'
-#'
-#'
-#'
+#' @return a \code{character} vector with merged paths
 path <- function(...) {
 
     dir <- paste0(unlist(list(...), use.names = FALSE), collapse = "/")
@@ -9,10 +9,10 @@ path <- function(...) {
     return(dir)
 }
 
+#' @title Create directory
+#' @param a \code{character} vector with path
 #'
-#'
-#'
-#'
+#' @return a \code{character} vector with the path of the created directory
 make_dir <- function(...) {
 
     dir <- path(...)
@@ -26,52 +26,103 @@ make_dir <- function(...) {
     dir
 }
 
+#' @title Get the extension name of file
+#' @param file a \code{character} with the name of file
+#'
+#' @return a \code{character} with the extension name of files
 extension <- function(file) {
     sub(".*\\.(.*)$", "\\1", file)
 }
 
+#' @title Get the path of samples
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of samples
 samples_dir <- function(proj_dir) {
     path(proj_dir, "samples")
 }
 
+#' @title Get the path of samples in csv
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of samples
 samples_file_csv <- function(proj_dir) {
     path(samples_dir(proj_dir), "samples.csv")
 }
 
+#' @title Get the path of samples in rds
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of samples
 samples_file_rds <- function(proj_dir) {
     path(samples_dir(proj_dir), "samples.rds")
 }
 
+#' @title Get the path of samples that will be spitted
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of samples
 splits_dir <- function(proj_dir) {
     path(samples_dir(proj_dir), "splits")
 }
 
+#' @title Get the path of samples that will be spitted in csv
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of samples
 splits_file_csv <- function(proj_dir) {
     list.files(path = splits_dir(proj_dir = proj_dir),
                pattern = "\\.csv$", full.names = TRUE)
 }
 
+#' @title Get the path of samples that will be spitted in rds
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of samples
 splits_file_rds <- function(proj_dir) {
     list.files(path = splits_dir(proj_dir = proj_dir),
                pattern = "\\.rds$", full.names = TRUE)
 }
 
+#' @title Get the model directory
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of model
 model_dir <- function(proj_dir) {
     path(proj_dir, "model")
 }
 
+#' @title Get the model directory in rds
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of model
 model_file_rds <- function(proj_dir) {
     path(model_dir(proj_dir = proj_dir), "model.rds")
 }
 
+#' @title Get the probability images directory
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of probability images
 probs_dir <- function(proj_dir) {
     path(proj_dir, "probs")
 }
 
+#' @title Get the probability images directory in rds
+#' @param proj_dir a \code{character} with project directory
+#'
+#' @return a \code{character} with path of probability images
 probs_file_rds <- function(proj_dir) {
     path(probs_dir(proj_dir = proj_dir), "probs.rds")
 }
 
+#' @title Creates project directory
+#'
+#' @param proj_dir a \code{character} with project directory
+#' @param samples_file a \code{character} with samples directory
+#' @param force a \code{logical} if TRUE the samples will be overwritten
+#'
+#' @return an invisible NULL
 #' @export
 make_proj_dir <- function(proj_dir, samples_file, force = FALSE) {
 
@@ -98,7 +149,13 @@ make_proj_dir <- function(proj_dir, samples_file, force = FALSE) {
     invisible(NULL)
 }
 
-
+#' @title Get time series from csv file
+#'
+#' @param csv_file \code{character} with csv samples directory
+#' @param cube a \code{sits_cube} object
+#' @param force a \code{logical} if TRUE the samples will be overwritten
+#'
+#' @return a \code{tibble} with time series extracted
 get_ts_from_csv <- function(csv_file, cube, force = FALSE) {
 
     rds_file <- paste0(sub("^(.*)\\.csv$", "\\1.rds", csv_file))
@@ -114,7 +171,12 @@ get_ts_from_csv <- function(csv_file, cube, force = FALSE) {
     rds_file
 }
 
-do_split_csv <- function(proj_dir, num_splits = 10) {
+#' @title Split samples
+#' @param proj_dir a \code{character} with project directory
+#' @param num_splits a \code{numeric} with number of partitions will be splitted
+#'
+#' @return an invisible NULL
+do_split <- function(proj_dir, num_splits = 10) {
 
     stopifnot(file.exists(samples_file_csv(proj_dir = proj_dir)))
 
@@ -141,8 +203,17 @@ do_split_csv <- function(proj_dir, num_splits = 10) {
     invisible(NULL)
 }
 
+#' @title Get time series
+#' @param proj_dir a \code{character} with project directory
+#' @param cube a \code{sits_cube} object
+#' @param csv_files a \code{character} with csv samples directory
+#' @param num_splits a \code{numeric} with number of partitions will be splitted
+#' @param multicores a \code{numeric} with number of cores will be used
+#' @param force a \code{logical} if TRUE the samples will be overwritten
+#'
+#' @return an invisible NULL
 #' @export
-do_get_ts <- function(proj_dir, cube, num_splits = 10, multicores = 20,
+do_get_ts <- function(proj_dir, cube, csv_files, num_splits = 10, multicores = 20,
                       force = FALSE) {
 
     stopifnot(dir.exists(proj_dir))
@@ -179,6 +250,12 @@ do_get_ts <- function(proj_dir, cube, num_splits = 10, multicores = 20,
     invisible(NULL)
 }
 
+#' @title Train model
+#' @param proj_dir a \code{character} with project directory
+#' @param ml_method a \code{sits_model} object
+#' @param force a \code{logical} if TRUE the samples will be overwritten
+#'
+#' @return an invisible NULL
 #' @export
 do_train <- function(proj_dir, ml_method, force = FALSE) {
 
@@ -202,6 +279,10 @@ do_train <- function(proj_dir, ml_method, force = FALSE) {
     invisible(NULL)
 }
 
+#' @title Fix name of cubes
+#' @param cube a \code{sits_cube} object
+#'
+#' @return a \code{sits_cube} object with fixed name
 fix_cube_names_uniqueness <- function(cube) {
     if (length(cube$name) != length(unique(cube$name))) {
         if (all(!is.na(cube$tile))) {
@@ -216,13 +297,20 @@ fix_cube_names_uniqueness <- function(cube) {
     return(cube)
 }
 
+#' @title Create a name for probs cube files
+#'
+#' @param proj_dir a \code{character} with project directory
+#' @param cube a \code{sits_cube} object
+#' @param version a \code{character} with version
+#'
+#' @return a \code{character} of cube probs files
 cube_probs_files <- function(proj_dir, cube, version) {
 
     # set the name of the output cube
     name <- paste0(cube$name, "_probs")
 
     # get start and end dates
-    timeline <- as.Date(sits_timeline(cube))
+    timeline <- as.Date(sits::sits_timeline(cube))
     start_date <- timeline[[1]]
     end_date <- timeline[[length(timeline)]]
 
@@ -234,6 +322,17 @@ cube_probs_files <- function(proj_dir, cube, version) {
     file_name
 }
 
+#' @title
+#'
+#' @param proj_dir a \code{character} with project directory
+#' @param cube a \code{sits_cube} object
+#' @param roi a \code{list} with interested region
+#' @param version a \code{character} with version
+#' @param memsize a \code{numeric} with the memory size that will be used
+#' @param multicores a \code{numeric} with number of cores will be used
+#' @param force a \code{logical} if TRUE the samples will be overwritten
+#'
+#' @return an invisible NULL
 #' @export
 do_classify <- function(proj_dir, cube, roi = NULL, version = "v1",
                         memsize = 20, multicores = 20, force = FALSE) {

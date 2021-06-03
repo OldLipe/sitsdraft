@@ -6,8 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/OldLipe/sitsdraft/workflows/R-CMD-check/badge.svg)](https://github.com/OldLipe/sitsdraft/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/OldLipe/sitsdraft/branch/master/graph/badge.svg)](https://codecov.io/gh/OldLipe/sitsdraft?branch=master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The goal of sitsdraft is to create a common directory setup for an easy

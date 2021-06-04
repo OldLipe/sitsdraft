@@ -29,5 +29,6 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(sitsdraft)
-## basic example code
+
+sitsdraft::sitsdraft('mydir/mypackage')
 ```

@@ -2,8 +2,9 @@ Package: sitsdraft
 Type: Package
 Title: Template For SITS Applications Based on Reproducible Research
 Version: 0.1.0
-Authors@R: c(person('Felipe', 'Carvalho', role = c('aut'), email = 'lipecaso@gmail.com'),
-             person('Felipe', 'Carlos', role = c('aut', 'cre'), email = 'felipe.carlos@inpe.br'))
+Authors@R: c(person('Felipe', 'Carvalho', role = c('aut', 'cre'), email = 'lipecaso@gmail.com'),
+             person('Felipe', 'Carlos', role = c('aut'), email = 'felipe.carlos@inpe.br'),
+             person('Rolf', 'Simoes', role = c('aut'), email = 'rolf.simoes@inpe.br'))
 Maintainer: Felipe Carvalho <lipecaso@gmail.com>
 Description: Provides a basic template for applications based on SITS package and 
     reproducible research tools.
@@ -17,11 +18,10 @@ LazyData: true
 Imports:
     rrtools,
     usethis,
-    tools,
-    rstudioapi,
     dplyr,
     furrr,
-    future
+    future,
+    sits
 Remotes:
     sits
 RoxygenNote: 7.1.1
